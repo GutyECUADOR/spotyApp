@@ -7,7 +7,8 @@ import { SpotifyService } from '../../services/spotify.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  terminoBusqueda: string;
+  public terminoBusqueda: string;
+  public artistas: any = [];
   constructor(private spotify: SpotifyService) {
   }
 
@@ -17,7 +18,10 @@ export class SearchComponent implements OnInit {
   buscarArtista() {
     console.log(this.terminoBusqueda);
     if (this.terminoBusqueda.length > 0) {
-      this.spotify.searchArtista(this.terminoBusqueda).subscribe();
+      this.spotify.searchArtista(this.terminoBusqueda).subscribe((response: any) => {
+        this.artistas = response;
+        console.log(response);
+      });
     }
 
   }
