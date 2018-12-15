@@ -10,20 +10,11 @@
     </div>
   </div>
 
+  <app-loading *ngIf="isLoading"></app-loading>
+
   <div class="card-columns">
-    <div *ngFor="let artista of artistas" class="card">
-      <img class="card-img-top img-fluid" [src]="artista.images | sinfoto " alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title text-primary">{{ artista.name }}</h5>
-        <p class="card-text text-dark">Genero: {{ artista.genres[0] }} </p>
-        <p class="card-text">
-          <small class="text-muted">Popularidad: {{ artista.popularity }}, Seguidores: {{ artista.followers.total}}</small>
-        </p>
-        <button 
-          [routerLink]="['/artista', artista.id]" 
-          class="btn btn-primary btn-block">Discografia</button>
-      </div>
-    </div>
+
+    <app-tarjeta [items]="artistas"></app-tarjeta>
     
   </div>
 

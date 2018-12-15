@@ -26,19 +26,22 @@
     </a>
   </div>
 </div>
+
+
+
 <div class="container margin30">
   <h3>Nuevos Lanzamientos</h3>
 
+  <div *ngIf="errorAPI" class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Upsss!</strong> Algo ha salido mal, {{ mensajeErrorAPI }}.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <app-loading *ngIf="isLoading"></app-loading>
+
   <div class="card-columns">
-    <div *ngFor="let cancion of arrayNewReleases" class="card" >
-      <img class="card-img-top" [src]="cancion.images[0].url" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">{{ cancion.name }}</h5>
-        <span *ngFor="let artista of cancion.artists" class="badge badge-pill badge-primary">{{ artista.name }}</span>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">Fecha de lanzamiento: {{ cancion.release_date }}</small>
-      </div>
-    </div>
-  </div>  
+    <app-tarjeta [items]="arrayNewReleases"></app-tarjeta>
+  </div>
 </div>

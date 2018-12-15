@@ -15,8 +15,9 @@ import { FormsModule } from '@angular/forms';
 import { SpotifyService } from './services/spotify.service';
 import { SinfotoPipe } from './pipes/sinfoto.pipe';
 import { ArtistaComponent } from './components/artista/artista.component';
-
-
+import { TarjetaComponent } from './components/tarjeta/tarjeta.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { DomseguroPipe } from './pipes/domseguro.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,10 @@ import { ArtistaComponent } from './components/artista/artista.component';
     SearchComponent,
     HomeComponent,
     SinfotoPipe,
-    ArtistaComponent
+    DomseguroPipe,
+    ArtistaComponent,
+    TarjetaComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

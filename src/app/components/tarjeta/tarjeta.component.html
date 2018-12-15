@@ -1,0 +1,12 @@
+  <div *ngFor="let artista of items" class="card">
+    <img class="card-img-top img-fluid" [src]="artista.images | sinfoto " alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ artista.name }}</h5>
+      <span *ngFor="let badge of artista.artists" class="badge badge-pill badge-primary">{{ badge.name }}</span>
+     
+    </div>
+    <div class="card-footer">
+      <button [routerLink]="['/artista', artista.id]" class="btn btn-primary btn-block">Discografia</button>
+      <small class="text-muted">Fecha de lanzamiento: {{ artista.release_date }}</small>
+    </div>
+  </div>

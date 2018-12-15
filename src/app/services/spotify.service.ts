@@ -5,7 +5,8 @@ import { map } from 'rxjs/operators'; // (map) Filtra la informacion de la respu
 
 @Injectable()
 export class SpotifyService {
-  private token = 'Bearer BQDMLe6q9n8_GDMqG8u-PyNEIZ61aJbGAkRjfDFq_J6yyhVPpRYF_4XXijnl0l8e9mVlRa_okwPT2DzC4jE';
+  /* Definir token de validacion aqui https://accounts.spotify.com/api/token*/
+  private token = 'Bearer BQDkG5ScDWWd-YhdmefY1ln0t6ad6njSSBEpwxfIUS5MelXyHdp8wtjV2VK2Pu4zJoANu9S6XqAgC3b7eMU';
 
   constructor(private httpCli: HttpClient) { }
 
@@ -43,6 +44,21 @@ export class SpotifyService {
     return this.httpCli.get('https://api.spotify.com/v1/browse/new-releases?limit=20', { headers })
       .pipe(map( response => {
         return response['albums'].items;
+      }));
+  }
+
+
+  getTopTraksArtist(codSpotifyArtista: string) {
+    /*Paràmetros que se envian por GET y POST, ejem ID, authorization, etc*/
+    const headers = new HttpHeaders({
+      'Authorization': this.token
+    });
+
+    const URL = `https://api.spotify.com/v1/artists/${codSpotifyArtista}/top-tracks?country=EC`;
+
+    return this.httpCli.get(URL, { headers })
+      .pipe(map(response => {
+        return response['tracks'];
       }));
   }
 }

@@ -1,20 +1,40 @@
 <div class="container margin30top">
 
-  <div class="card">
-    <img class="card-img-top" [src]="artista.images[0].url" alt="Card image cap">
+  <div class="card" *ngIf="artista">
     <div class="card-body">
       <h5 class="card-title">{{ artista.name }}</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <p class="card-text"><a [href]="artista.external_urls.spotify" target="_blank">Ir a la pagina del artista</a></p>
     </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Cras justo odio</li>
-      <li class="list-group-item">Dapibus ac facilisis in</li>
-      <li class="list-group-item">Vestibulum at eros</li>
-    </ul>
-    <div class="card-body">
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
+    
+  </div>
+
+  <div class="card" *ngIf="artista">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Foto</th>
+        <th scope="col">Lanzamiento</th>
+        <th scope="col">Cancion</th>
+        <th scope="col">Vista Previa</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let trak of topTraks">
+        <th scope="row"><img [src]="trak.album.images | sinfoto" class="img-thumbnail img-thumb"></th>
+        <td>{{ trak.album.name }}</td>
+        <td>{{ trak.name }}</td>
+        <td>
+          <!-- <audio controls>
+            <source [src]="trak.preview_url" type="audio/ogg">
+              https://open.spotify.com/embed/track/19vhfSUgVJO2enJ6XidUGO
+          </audio> -->
+          <iframe [src]="trak.id | domseguro:'https://open.spotify.com/embed/track/' " width="300" height="80" frameborder="0"
+            allowtransparency="true" allow="encrypted-media"></iframe>
+        </td>
+      </tr>
+     
+    </tbody>
+  </table>
   </div>
 
 </div>
